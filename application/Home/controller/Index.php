@@ -29,6 +29,7 @@ class Index extends Controller
     public function login()
     {
 
+        $this->assign('error','ok');
         return $this->fetch();
     }
 
