@@ -15,7 +15,7 @@ use think\console\command\Make;
 
 class Model extends Make
 {
-    protected $type = "Model";
+    protected $type = "model";
 
     protected function configure()
     {

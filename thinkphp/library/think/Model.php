@@ -22,7 +22,7 @@ use think\model\Relation;
 use think\paginator\Collection as PaginatorCollection;
 
 /**
- * Class Model
+ * Class model
  * @package think
  * @method static PaginatorCollection paginate(integer $listRows = 15, boolean $simple = false, array $config = []) 分页查询
  * @method static mixed value($field, $default = null) 得到某个字段的值

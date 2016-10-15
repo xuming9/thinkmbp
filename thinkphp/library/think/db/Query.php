@@ -1581,7 +1581,7 @@ class Query
     /**
      * 关联预加载中 获取关联指定字段值
      * example:
-     * Model::with(['relation' => function($query){
+     * model::with(['relation' => function($query){
      *     $query->withField("id,name");
      * }])
      *

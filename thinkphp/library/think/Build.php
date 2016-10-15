@@ -140,7 +140,7 @@ class Build
                             $content = "<?php\nnamespace {$space};\n\nclass {$class}\n{\n\n}";
                             break;
                         case 'model': // 模型
-                            $content = "<?php\nnamespace {$space};\n\nuse think\Model;\n\nclass {$class} extends Model\n{\n\n}";
+                            $content = "<?php\nnamespace {$space};\n\nuse think\Model;\n\nclass {$class} extends model\n{\n\n}";
                             break;
                         case 'view': // 视图
                             $filename = $modulePath . $path . DS . $val . '.html';
@@ -173,10 +173,10 @@ class Build
      */
     protected static function buildHello($module, $namespace, $suffix = false)
     {
-        $filename = APP_PATH . ($module ? $module . DS : '') . 'controller' . DS . 'Index' . ($suffix ? 'Controller' : '') . EXT;
+        $filename = APP_PATH . ($module ? $module . DS : '') . 'controller' . DS . 'Index' . ($suffix ? 'controller' : '') . EXT;
         if (!is_file($filename)) {
             $content = file_get_contents(THINK_PATH . 'tpl' . DS . 'default_index.tpl');
-            $content = str_replace(['{$app}', '{$module}', '{layer}', '{$suffix}'], [$namespace, $module ? $module . '\\' : '', 'controller', $suffix ? 'Controller' : ''], $content);
+            $content = str_replace(['{$app}', '{$module}', '{layer}', '{$suffix}'], [$namespace, $module ? $module . '\\' : '', 'controller', $suffix ? 'controller' : ''], $content);
             if (!is_dir(dirname($filename))) {
                 mkdir(dirname($filename), 0755, true);
             }
