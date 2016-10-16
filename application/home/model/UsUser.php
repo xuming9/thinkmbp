@@ -18,20 +18,24 @@ class UsUser extends Model
     //模型表名
     protected $table = 'us_user';
 
-    //用户登录验证,验证成功返回用户实例,否则返回null
-    public function login($username = '', $password = '', $status = 'E') {
+
+    /**
+     * 用户登录验证,验证成功返回用户实例,否则返回null
+     * @param string $username 用户名
+     * @param string $password 密码
+     * @return array|null 用户实例
+     */
+    public function login($username = '', $password = '') {
         //后期需要处理$username和$password的字符,防注入
 
         $map = array(
             'username'=>$username,
             'password'=>$password,
-            'status'=>$status
+            'status'=>'E'
         );
 
         $user = $this->db()->where($map)->find();
         if ($user){
-            $_SESSION['user']=$user;
-            $_SESSION['$lastTime']=time();
             return $user->toArray();
         }else{
             return null;
@@ -39,17 +43,20 @@ class UsUser extends Model
 
     }
 
-    //新增用户
+    /**
+     * 新增用户
+     * @param $data
+     * @return 错误信息,成功则返回OK
+     */
     public function addUser($data){
         if($data){
             $userName = $data['userName'];
             $count=$this->findUserByName($userName);
-            dump($count);
             if ($count===0){
                 $data['status']='E';
                 $data['createTime']= DateUtils::getNow();
-                echo $this->save($data);
-                return 'OK';
+                $this->save($data);
+                return config('__OK__');
             }else{
                 return '用户名已存在';
             }
@@ -58,7 +65,12 @@ class UsUser extends Model
         }
     }
 
-    //查询用户是否存在,不存在返回0,
+
+    /**
+     * 通过用户名,查询用户数量
+     * @param string $userName 用户名
+     * @return int 用户数量
+     */
     public function findUserByName($userName=''){
 //        $user = $this->db()->where('userName',$userName)->find();
 //        if ($user){

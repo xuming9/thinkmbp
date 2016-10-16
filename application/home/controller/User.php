@@ -11,28 +11,31 @@ namespace app\home\controller;
 
 use app\home\model\UsUser;
 use think\Controller;
+use think\Request;
 
 class User extends common{
 
+    /**
+     * @return mixed 查询所有用户
+     */
     public function findUsers(){
         $UsUser = model('UsUser');
-
-//        $options=[
-//            'page'=>$_GET['page'],
-//            'path'=>url('visitLog')
-//        ];
-
-//        $visitList = $visit->db()->select();
         $userList = $UsUser->db()->select();
-//        $page = $visitList->paginate(10);
         $this->assign('userList',$userList);
-//        $this->assign('page',$page);
         return $this->fetch();
     }
 
+    /**
+     * @return mixed 跳转至添加用户页面
+     */
     public function addUser(){
+//        $this->assign('now',time());
         return $this->fetch();
     }
+
+    /**
+     * @return mixed 普通方式创建用户
+     */
     public function insertUser(){
         $data = array(
             'userName' => $_POST['userName'],
@@ -42,11 +45,37 @@ class User extends common{
             'phone' => $_POST['phone']
         );
 
-            dump($data);
-
         $user = model('UsUser');
-        echo $user->addUser($data);
+        $result = $user->addUser($data);
+        echo '<br/>'.$result;
+        if($result === config('__OK__')){
+            $this->display('addUser');
+        }else{
+            $this->error( '','',$result,0);
+        }
 
         return $this->fetch('addUser');
+
+    }
+
+    /**
+     * @return mixed ajax创建用户
+     */
+    public function ajax_insertUser(){// 是否为 Ajax 请求
+        $request = Request::instance();
+        if(var_export($request->isAJax(), true)){
+            $data =array(
+                "userName"=>$_POST['userName'],
+                "name"=>$_POST['name'],
+                "deptId"=>$_POST['deptId'],
+                "email"=>$_POST['email'],
+                "phone"=>$_POST['phone']
+            );
+            $user = model('UsUser');
+            $result = $user->addUser($data);
+            $this->result('','',$result);
+        }else{
+            $this->result('','','非法请求,保存失败');
+        }
     }
 }

@@ -61,56 +61,68 @@
                                     <div class="portlet light ">
                                         <div class="portlet-title">
                                             <div class="caption font-green-haze">
-                                                <span  class="caption-subject bold uppercase">
-                                                    &nbsp&nbsp用户权限&nbsp
+                                                <span class="caption-subject bold uppercase">
+                                                    &nbsp;&nbsp;用户权限&nbsp;
                                                     <i class="fa fa-angle-right"></i>
-                                                    &nbsp添加用户
+                                                    &nbsp;添加用户&nbsp;
                                                 </span>
                                             </div>
                                         </div>
                                         <div class="portlet-body form">
-                                            <form role="form" class="form-horizontal" action="insertUser" method="post">
+                                            <div id="div_insert_result"></div>
+                                            <form role="form" class="form-horizontal" method="post" id="form_user"
+                                                  onsubmit="return false;">
                                                 <div class="form-body">
                                                     <div class="form-group form-md-line-input">
-                                                        <label class="col-md-2 control-label" for="form_control_1">用户名<span class="required" aria-required="true"> * </span></label>
+                                                        <label class="col-md-2 control-label" for="form_control_1">用户名
+                                                            <span class="required"
+                                                                  aria-required="true"> * </span></label>
 
                                                         <div class="col-md-10">
-                                                            <input type="text" class="form-control" name="userName" placeholder="请输入登录帐号名">
-                                                            <div class="form-control-focus"> </div>
+                                                            <input type="text" class="form-control" id="userName"
+                                                                   placeholder="请输入登录帐号名">
+                                                            <div class="form-control-focus"></div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group form-md-line-input">
-                                                        <label class="col-md-2 control-label" for="form_control_1">真实姓名</label>
+                                                        <label class="col-md-2 control-label"
+                                                               for="form_control_1">真实姓名</label>
                                                         <div class="col-md-10">
-                                                            <input type="text" class="form-control" name="name" placeholder="请输入真实姓名">
-                                                            <div class="form-control-focus"> </div>
+                                                            <input type="text" class="form-control" id="name"
+                                                                   placeholder="请输入真实姓名">
+                                                            <div class="form-control-focus"></div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group form-md-line-input">
-                                                        <label class="col-md-2 control-label" for="form_control_1">部门</label>
+                                                        <label class="col-md-2 control-label"
+                                                               for="form_control_1">部门</label>
                                                         <div class="col-md-10">
-                                                            <select class="form-control" name="deptId">
+                                                            <select class="form-control" id="deptId">
                                                                 <option value="0"></option>
                                                                 <option value="1">IT部</option>
                                                                 <option value="2">财务部</option>
                                                                 <option value="3">行政部</option>
                                                                 <option value="4">销售部</option>
                                                             </select>
-                                                            <div class="form-control-focus"> </div>
+                                                            <div class="form-control-focus"></div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group form-md-line-input">
-                                                        <label class="col-md-2 control-label" for="form_control_1">邮箱</label>
+                                                        <label class="col-md-2 control-label"
+                                                               for="form_control_1">邮箱</label>
                                                         <div class="col-md-10">
-                                                            <input type="text" class="form-control" name="email" placeholder="请输入电子邮箱">
-                                                            <div class="form-control-focus"> </div>
+                                                            <input type="text" class="form-control" id="email"
+                                                                   placeholder="请输入电子邮箱">
+                                                            <div class="form-control-focus"></div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group form-md-line-input">
-                                                        <label class="col-md-2 control-label" for="form_control_1">电话</label>
+                                                        <label class="col-md-2 control-label"
+                                                               for="form_control_1">电话</label>
                                                         <div class="col-md-10">
-                                                            <input type="text" class="form-control" name="phone" placeholder="请输入手机或电话号码">
-                                                            <div class="form-control-focus"> </div>
+                                                            <input type="text" class="form-control" id="phone"
+                                                                   placeholder="请输入手机或电话号码">
+                                                            <div class="form-control-focus"></div>
                                                         </div>
                                                     </div>
 
@@ -118,8 +130,10 @@
                                                 <div class="form-actions">
                                                     <div class="row">
                                                         <div class="col-md-offset-2 col-md-10">
-                                                            <button type="reset" class="btn default">取消</button>
-                                                            <button type="submit" class="btn blue">确定</button>
+                                                            <button id="bt_reset" class="btn befault"
+                                                                    onclick="resetForm();">取消
+                                                            </button>
+                                                            <button id="bt_submit" class="btn blue">确定</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -148,6 +162,43 @@
 </div>
 
 {include file='./public/static/js.html'}
+
+
+<script>
+    $(function () {
+        $("#bt_submit").click(function () {
+            var userName = $("#userName").val();
+            var name = $("#name").val();
+            var deptId = $("#deptId").val();
+            var email = $("#email").val();
+            var phone = $("#phone").val();
+//            alert(userName + "-" + name + "-" + deptId + "-" + email + "-" + phone);
+            $.post(
+                    "ajax_insertUser",
+                    {userName:userName,name:name,deptId:deptId,email:email,phone:phone},
+                    function (data) {
+                        if (data.msg == "OK") {
+                            $('#div_insert_result').empty();
+                            var html = "<div class='alert alert-success'>用户创建成功</div>";
+                            $('#div_insert_result').html(html);
+                            //$("#form_user").resetForm();
+                        } else {
+                            $('#div_insert_result').empty();
+                            var html = "<div class='alert alert-danger'>" + data.msg + "</div>";
+                            $('#div_insert_result').html(html);
+                        }
+                    },
+                    'json'
+            );
+        })
+    })
+
+    function resetForm() {
+        $('#div_insert_result').empty();
+        $("#form_user").resetForm();
+    }
+
+</script>
 
 </body>
 

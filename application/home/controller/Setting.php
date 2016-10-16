@@ -10,6 +10,7 @@
 namespace app\home\controller;
 
 use think\Controller;
+use app\home\controller\common;
 
 class Setting extends Common{
 

@@ -53,12 +53,7 @@
                     <div class="page-head">
                         <div class="container">
                             <!-- BEGIN PAGE TITLE -->
-                            <div class="page-title">
-                                <span>系统设置&nbsp</span>
-                                <i class="fa fa-angle-right"></i>
-                                <span>&nbsp流量查询</span>
 
-                            </div>
                             <!-- END PAGE TITLE -->
 
                         </div>
