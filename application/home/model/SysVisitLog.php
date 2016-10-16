@@ -44,13 +44,13 @@ class SysVisitLog extends Model
     //保存访客信息
     public function saveVisit()
     {
-        $map =  array(
+        $data =  array(
             'ip' => $_SERVER["REMOTE_ADDR"],
             'url' => $_SERVER["REQUEST_URI"],
             'createTime' => date('Y-m-d H:i:s')
         );
 
-       $this->save($map);
+       $this->save($data);
     }
 
 

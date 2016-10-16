@@ -7,8 +7,6 @@
 <body>
 我是官网
 <br/>
-<php
-    echo $_SERVER["REQUEST_URI"]
-?>
+<a href="index/login"> 登录 </a>
 </body>
 </html>
