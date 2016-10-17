@@ -17,7 +17,7 @@ CREATE TABLE us_user
     phone VARCHAR(50) DEFAULT '' NOT NULL COMMENT '联系方式',
     status VARCHAR(10) DEFAULT 'E' COMMENT '状态, E正常 D失效',
     createTime DATETIME COMMENT '创建时间',
-    createUser INT  COMMENT '创建人id',
+    createUser INT  COMMENT '创建人id'
 );
 #初始化admin帐号
 INSERT INTO us_user VALUES (0,'admin','管理员','admin','ming.xu@mbpsoft.com','0','18820110911','E','2016-10-10 12:12:12',0,'2016-10-10 12:12:12');
@@ -34,7 +34,7 @@ CREATE TABLE sys_visit_log
     createTime DATETIME NOT NULL COMMENT '访问时间'
 );
 #初始化访问日志
-INSERT INTO sys_visit_log VALUES (0,'127.0.0.1','广东省','广州市','/','2008-08-08 08:08:08')
+INSERT INTO sys_visit_log VALUES (0,'127.0.0.1','广东省','广州市','/','2008-08-08 08:08:08');
 
 
 #创建用户登录日志
@@ -43,7 +43,7 @@ CREATE TABLE us_login(
   userId INT NOT NULL COMMENT '用户ID',
   loginDate DATETIME COMMENT '登录日期',
   logoutDate DATETIME COMMENT '退出日期'
-)
+);
 
 
 #创建用户登录日志
@@ -54,7 +54,7 @@ CREATE TABLE jo_job(
   require VARCHAR(4000) COMMENT '任职要求',
   createTime DATETIME NOT NULL COMMENT '创建日期',
   createUser INT NOT NULL COMMENT '创建人'
-)
+);
 
 
 
