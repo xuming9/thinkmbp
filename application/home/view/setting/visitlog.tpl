@@ -13,27 +13,9 @@
 <!-- BEGIN HEAD -->
 
 <head>
-    <meta charset="utf-8"/>
     <title>后台管理首页</title>
     {include file='./public/static/header.html'}
-
     {include file='./public/static/css.html'}
-
-    <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <link href="__ASSET__/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet"
-          type="text/css"/>
-    <link href="__ASSET__/global/plugins/morris/morris.css" rel="stylesheet" type="text/css"/>
-    <link href="__ASSET__/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css"/>
-    <link href="__ASSET__/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
-    <!-- END PAGE LEVEL PLUGINS -->
-
-    <!-- BEGIN THEME LAYOUT STYLES -->
-    <link href="__ASSET__/layouts/layout3/css/layout.min.css" rel="stylesheet" type="text/css"/>
-    <link href="__ASSET__/layouts/layout3/css/themes/default.min.css" rel="stylesheet" type="text/css"
-          id="style_color"/>
-    <link href="__ASSET__/layouts/layout3/css/custom.min.css" rel="stylesheet" type="text/css"/>
-    <!-- END THEME LAYOUT STYLES -->
-    <link rel="shortcut icon" href="favicon.ico"/>
 </head>
 <!-- END HEAD -->
 
@@ -62,7 +44,7 @@
                                     <div class="portlet box light">
                                         <div class="portlet-title">
                                             <div class="caption font-green-haze">
-                                                <span  class="caption-subject bold uppercase">
+                                                <span class="caption-subject bold uppercase">
                                                     &nbsp&nbsp用户权限&nbsp
                                                     <i class="fa fa-angle-right"></i>
                                                     &nbsp添加用户

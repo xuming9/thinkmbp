@@ -13,27 +13,10 @@
 <!-- BEGIN HEAD -->
 
 <head>
-    <meta charset="utf-8"/>
     <title>后台管理首页</title>
     {include file='./public/static/header.html'}
-
     {include file='./public/static/css.html'}
 
-    <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <link href="__ASSET__/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet"
-          type="text/css"/>
-    <link href="__ASSET__/global/plugins/morris/morris.css" rel="stylesheet" type="text/css"/>
-    <link href="__ASSET__/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css"/>
-    <link href="__ASSET__/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
-    <!-- END PAGE LEVEL PLUGINS -->
-
-    <!-- BEGIN THEME LAYOUT STYLES -->
-    <link href="__ASSET__/layouts/layout3/css/layout.min.css" rel="stylesheet" type="text/css"/>
-    <link href="__ASSET__/layouts/layout3/css/themes/default.min.css" rel="stylesheet" type="text/css"
-          id="style_color"/>
-    <link href="__ASSET__/layouts/layout3/css/custom.min.css" rel="stylesheet" type="text/css"/>
-    <!-- END THEME LAYOUT STYLES -->
-    <link rel="shortcut icon" href="favicon.ico"/>
 </head>
 <!-- END HEAD -->
 
@@ -41,7 +24,8 @@
 
 <div class="page-wrapper">
 
-    {include file='./public/static/menu.html'}
+
+        {include file='./public/static/menu.html'}
 
     <div class="page-wrapper-row full-height">
         <div class="page-wrapper-middle">
@@ -54,6 +38,7 @@
                     <!-- BEGIN PAGE CONTENT BODY -->
                     <div class="page-content">
                         <div class="container">
+
 
                             <div class="row">
                                 <div class="col-md-12">
@@ -69,7 +54,9 @@
                                             </div>
                                         </div>
                                         <div class="portlet-body form">
-                                            <div id="div_insert_result"></div>
+                                            <div id="div_insert_result">
+
+                                            </div>
                                             <form role="form" class="form-horizontal" method="post" id="form_user"
                                                   onsubmit="return false;">
                                                 <div class="form-body">
@@ -179,12 +166,12 @@
                     function (data) {
                         if (data.msg == "OK") {
                             $('#div_insert_result').empty();
-                            var html = "<div class='alert alert-success'>用户创建成功</div>";
+                            var html = "<div class='alert alert-success alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'></button>用户创建成功</div>";
                             $('#div_insert_result').html(html);
                             //$("#form_user").resetForm();
                         } else {
                             $('#div_insert_result').empty();
-                            var html = "<div class='alert alert-danger'>" + data.msg + "</div>";
+                            var html = "<div class='alert alert-danger alert-dismissable'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'/></button>" + data.msg + "</div>";
                             $('#div_insert_result').html(html);
                         }
                     },
