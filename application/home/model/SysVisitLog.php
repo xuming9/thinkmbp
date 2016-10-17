@@ -53,6 +53,9 @@ class SysVisitLog extends Model
        $this->save($data);
     }
 
+    public function selectVisit(){
+        return $this->db()->order('createTime desc')->select();
+    }
 
 }
 

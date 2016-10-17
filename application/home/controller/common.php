@@ -11,6 +11,11 @@ namespace app\home\controller;
 use think\Controller;
 use think\Session;
 
+/**
+ * Class common
+ * @package app\home\controller
+ * 控制器父类,构造方法充当过滤器的一部分功能
+ */
 class common extends Controller
 {
 
@@ -24,23 +29,18 @@ class common extends Controller
      */
     protected function checkLogin() {
         //验证是否登录成功
-//        $loginUser = $_SESSION['login_user'];
-//        if(!$loginUser||!$loginUser['name']){
-//            echo 'no user';
-//            return $this->redirect('index/login');
-//        }
         if (!Session::has('login_user') || !Session::get('login_user')) {
-            $this->logout();
+            echo 'no user';
+            echo APP_PATH;
+            Session::clear();
+            return $this->redirect('index/login');
         }
-        //验证是否过期:无操作30分钟后过期
-//        $lastTime = $_SESSION['last_time'];
-//        if (!$lastTime || time() - $lastTime > 1800) {
-//            echo 'no time';
-//            //$this->logout();
-//        }
-
+        //验证是否超时:30分钟无操作
         if (!Session::has('last_time') || time()-Session::get('last_time')>1800) {
-            $this->logout();
+            echo 'no time';
+
+            Session::clear();
+            return $this->redirect('index/login');
         }
         Session::set('last_time', time());
     }
@@ -57,6 +57,6 @@ class common extends Controller
      */
     protected function logout() {
         Session::clear();
-        return redirect('../index/login');
+        return $this->redirect('index/login');
     }
 }

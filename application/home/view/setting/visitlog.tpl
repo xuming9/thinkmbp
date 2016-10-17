@@ -45,9 +45,9 @@
                                         <div class="portlet-title">
                                             <div class="caption font-green-haze">
                                                 <span class="caption-subject bold uppercase">
-                                                    &nbsp&nbsp用户权限&nbsp
+                                                    &nbsp&nbsp系统设置&nbsp
                                                     <i class="fa fa-angle-right"></i>
-                                                    &nbsp添加用户
+                                                    &nbsp流量查询
                                                 </span>
                                             </div>
                                             <div class="tools"></div>

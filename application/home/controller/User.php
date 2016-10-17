@@ -15,6 +15,10 @@ use think\Request;
 
 class User extends common{
 
+    function __construct() {
+        parent::__construct();
+    }
+
     /**
      * @return mixed 查询所有用户
      */
