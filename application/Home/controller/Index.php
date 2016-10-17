@@ -17,7 +17,11 @@ use think\Session;
 class Index extends Controller
 {
 
-    //访问首页时自动记录IP
+
+    /**
+     * @return mixed
+     * 记录访客信息
+     */
     public function index()
     {
 //        $visit = model('SysVisitLog');
@@ -26,7 +30,10 @@ class Index extends Controller
         return $this->fetch();
     }
 
-    //跳转至登录页面
+    /**
+     * @return mixed
+     * 跳转至登录页面
+     */
     public function login()
     {
 
@@ -34,7 +41,14 @@ class Index extends Controller
         return $this->fetch();
     }
 
-    //通过登录页面跳转至后台首页
+    public function loginoo(){
+        return $this->fetch();
+    }
+
+    /**
+     * @return mixed
+     * 验证登录
+     */
     public function admin()
     {
         $username = input('post.username');
@@ -58,7 +72,9 @@ class Index extends Controller
 
     }
 
-    //退出登录
+    /**
+     * 退出登录
+     */
     public function logout(){
         Session::clear();
         return $this->redirect('login');

@@ -81,6 +81,10 @@ class UsUser extends Model
         return $this->db()->where('userName',$userName)->count();
     }
 
+    public function disableUser($id=-1){
+        $this->db()->where('id',$id)->update(['status' => 'D']);
+    }
+
 
     //数据库缓存
     protected $field = array(

@@ -78,8 +78,32 @@ class User extends common{
             $user = model('UsUser');
             $result = $user->addUser($data);
             $this->result('','',$result);
+//            return $this->fetch();
         }else{
             $this->result('','','非法请求,保存失败');
         }
+    }
+
+    /**
+     * 删除用户
+     */
+    public function ajax_deleteUser(){
+        $request = Request::instance();
+        if(var_export($request->isAJax(), true)){
+
+            $userIdList=$_POST['userIdList'];
+
+
+            $user = model('UsUser');
+            foreach($userIdList as $userId){
+                $user->disableUser($userId);
+            }
+
+            $this->result('','','失效'.count($userIdList).'个用户');
+        }else{
+            $this->result('','','非法请求,保存失败');
+        }
+
+
     }
 }

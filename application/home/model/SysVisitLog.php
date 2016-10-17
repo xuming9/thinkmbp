@@ -17,12 +17,16 @@ use think\Model;
  */
 class SysVisitLog extends Model
 {
-//    protected  $tablePrefix='sys_';
+    /**
+     * @var string 表名
+     */
+    protected $table='sys_visit_log';
 
-//    protected $trueTableName='sys_visit_log';
 
-//    protected $trueTableName = 'my_user';
-
+    /**
+     * @var array
+     * 数据表缓存
+     */
     protected $field = array(
         'id',
         'ip',
@@ -41,7 +45,9 @@ class SysVisitLog extends Model
         )
     );
 
-    //保存访客信息
+    /**
+     * 保存访客信息
+     */
     public function saveVisit()
     {
         $data =  array(
@@ -53,6 +59,10 @@ class SysVisitLog extends Model
        $this->save($data);
     }
 
+    /**
+     * @return false|\PDOStatement|string|\think\Collection
+     * 查询所有访客信息
+     */
     public function selectVisit(){
         return $this->db()->order('createTime desc')->select();
     }

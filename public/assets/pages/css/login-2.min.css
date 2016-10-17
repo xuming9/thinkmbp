@@ -14,7 +14,7 @@
 
 .login .content {
     width: 400px;
-    margin: 40px auto
+    margin: 20px auto
 }
 
 .login .form-title {
@@ -218,13 +218,13 @@
 
 @media (max-width: 1400px) {
     .login .logo {
-        margin-top: 100px
+        margin-top: 80px
     }
 }
 
 @media (max-width: 480px) {
     .login .logo {
-        margin-top: 30px;
+        margin-top: 20px;
         padding: 0
     }
 
